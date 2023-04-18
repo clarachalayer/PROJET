@@ -9,7 +9,7 @@ INCLUDE_DIRECTORIES(/usr/local/Cellar/allegro/5.2.8.0_2/include)
 LINK_DIRECTORIES(/usr/local/Cellar/allegro/5.2.8.0_2/lib)
 file(GLOB LIBRARIES "/usr/local/Cellar/allegro/5.2.8.0_2/lib/*.dylib")
 message("LIBRARIES = ${LIBRARIES}")
-TARGET_LINK_LIBRARIES(pecheAuxCanards ${LIBRARIES})
+TARGET_LINK_LIBRARIES(pecheAuxCanards.c ${LIBRARIES})
 
 
 
