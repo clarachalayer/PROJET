@@ -4,6 +4,7 @@
 
 #include "pecheAuxCanards.h"
 #include <stdio.h>
+#include <assert.h>
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_font.h>
 #include <allegro5/allegro_primitives.h>
@@ -14,14 +15,21 @@
 #define LIGNE_EAU 500
 #define NB_CANARDS 10
 
-int main() {
-    //initialisations
-    assert(al_init());
-    assert(al_init_primitives_addon()); //initialisation formes
-    assert(al_install_keyboard()); //initialisation clavier
-    assert(al_install_mouse()); //ini souris
-    int fini = 0;
+int initialisation(){
 
+
+    {
+        assert(al_init());
+        assert(al_init_primitives_addon()); //initialisation formes
+        assert(al_install_keyboard()); //initialisation clavier
+        assert(al_install_mouse()); //ini souris
+        int fini = 0;
+
+        return fini ;
+    }
+}
+int main() {
+    initialisation();
 
     //déclarations
     ALLEGRO_DISPLAY* display = NULL;
@@ -58,6 +66,7 @@ int main() {
     }
 
     //boucle principale
+    bool fini;
     while(!fini) {
         //gestion des événements
         if (al_get_next_event(queue, &event)) {
