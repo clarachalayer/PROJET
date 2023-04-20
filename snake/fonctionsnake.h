@@ -1,9 +1,17 @@
 //
 // Created by Jb Caron on 20/04/2023.
 //
-
+#include <stdlib.h>
 #ifndef PROJET_FONCTIONSNAKE_H
 #define PROJET_FONCTIONSNAKE_H
+
+ typedef struct PointXY  {
+
+int x;
+int y;
+
+
+}Position ;
 
 
 void initialisation();
