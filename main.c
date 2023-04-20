@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_primitives.h>
-#include "src/pecheAuxCanards/pecheAuxCanards.h"
-#include "/src/tirAuxBallons/tirAuxBallons.h"
+#include "./src/pecheAuxCanards/pecheAuxCanards.h"
+#include "./src/tirAuxBallons/tirAuxBallons.h"
 
 void erreur(const char *txt) {
     printf("ERREUR : %s", txt);

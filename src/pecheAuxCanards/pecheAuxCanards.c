@@ -5,6 +5,7 @@
 #include "pecheAuxCanards.h"
 #include <stdio.h>
 #include <allegro5/allegro.h>
+#include <allegro5/allegro_font.h>
 #include <allegro5/allegro_primitives.h>
 #include <allegro5/allegro_image.h>
 
@@ -83,17 +84,17 @@ int main() {
                 }
             }
         }
-
+//charcger la police
         //affichage
         al_clear_to_color(bleu);
         al_draw_filled_rectangle(0, LIGNE_EAU, 800, 600, vert); //ligne d'eau
         for (int i = 0; i < NB_CANARDS; i++) {
             al_draw_bitmap(canard_bitmap, canard_x[i], canard_y[i], 0); //affichage canards
         }
-        al_draw_textf(al_create_builtin_font(), noir, 10, 10, 0, "Score : %d", score); //affichage score
+        al_draw_textf(NULL, noir, 10, 10, 0, "Score : %d", score); //affichage score
         al_flip_display();
     }
-
+//détruire la police
     //libérations
     al_destroy_bitmap(canard_bitmap);
     al_destroy_event_queue(queue);
