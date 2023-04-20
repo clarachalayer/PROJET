@@ -28,7 +28,7 @@ int initialisation(){
         return fini ;
     }
 }
-int main() {
+int pecheCanards() {
     initialisation();
 
     //déclarations
