@@ -8,6 +8,8 @@
 
 void initialisation();
 void initialisationCaractere();
+void afficherAreneFond(ALLEGRO_DISPLAY *display);
+void initialisationTerrain();
 
 
 #endif //PROJET_FONCTIONSNAKE_H

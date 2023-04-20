@@ -5,12 +5,12 @@
 #include "fonctionsnake.h"
 
 
-int main()
-{
+int main() {
+
     initialisation();
+    ALLEGRO_DISPLAY *display = al_create_display(3000, 1800);
 
-
-
+    afficherAreneFond(display);
 
     return 0;
 }
