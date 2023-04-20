@@ -10,6 +10,7 @@ void erreur(const char *txt) {
 }
 
 int main(void) {
+    initialisation();
     if (!al_init()) {
         erreur("Initialisation Allegro");
     }

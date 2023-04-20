@@ -12,6 +12,8 @@
 #define NB_DE_BALLONS 10
 #define CAGE_WIDTH 200
 #define CAGE_HEIGHT 100
+#define BALLON_HAUTEUR 30
+#define BALLON_LARGEUR 20
 
 
 typedef struct {
@@ -25,5 +27,6 @@ typedef struct {
 void init_ballons(Ballon ballons[]);
 void affiche_ballons(Ballon ballons[]);
 void avance_ballons(Ballon ballons[]);
-void collision_ballon(Ballon ballons[], Ennemi ennemis[], Vaisseau *vaisseau);
+void apparition_etoiles(Ballon ballons[])
+void collision_ballon(Ballon ballons[]);
 #endif //PROJET_TIRAUXBALLONS_H
