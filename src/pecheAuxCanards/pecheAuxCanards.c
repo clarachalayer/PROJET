@@ -47,7 +47,7 @@ void afficherCanards(Canards canards[]) {
     }
 }
 
-void gagnant(Joueur1 joueur1, Joueur2 joueur2){
+int gagnant(Joueur1 joueur1, Joueur2 joueur2){
     if (joueur1.nbCanards > joueur2.nbCanards) {
         printf("Joueur 1 vous êtes le gagnant !");
         int ticket = 0;
@@ -168,10 +168,13 @@ int pecheCanards() {
     }
     
     //libérations
+    ALLEGRO_BITMAP *canard_bitmap = NULL;
     al_destroy_bitmap(canard_bitmap);
     ALLEGRO_FONT *fontBangers160 = NULL;
     al_destroy_font(fontBangers160);
+    ALLEGRO_EVENT_QUEUE *queue = NULL;
     al_destroy_event_queue(queue);
+    ALLEGRO_DISPLAY *display = NULL;
     al_destroy_display(display);
     return 0;
 }
