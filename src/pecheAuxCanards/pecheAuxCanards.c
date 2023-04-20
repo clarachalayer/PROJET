@@ -8,8 +8,8 @@
 #include <allegro5/allegro_primitives.h>
 #include <allegro5/allegro_image.h>
 
-#define CANARD_WIDTH 80
-#define CANARD_HEIGHT 60
+#define CANARD_LARGEUR 80
+#define CANARD_HAUTEUR 60
 #define LIGNE_EAU 500
 #define NB_CANARDS 10
 
@@ -52,8 +52,8 @@ int main() {
     //position des canards
     int canard_x[NB_CANARDS], canard_y[NB_CANARDS];
     for (int i = 0; i < NB_CANARDS; i++) {
-        canard_x[i] = rand() % (800 - CANARD_WIDTH);
-        canard_y[i] = rand() % (LIGNE_EAU - CANARD_HEIGHT);
+        canard_x[i] = rand() % (800 - CANARD_LARGEUR);
+        canard_y[i] = rand() % (LIGNE_EAU - CANARD_HAUTEUR);
     }
 
     //boucle principale
@@ -73,11 +73,11 @@ int main() {
                 int y = event.mouse.y;
                 //vérification si on a cliqué sur un canard
                 for (int i = 0; i < NB_CANARDS; i++) {
-                    if (x >= canard_x[i] && x <= canard_x[i]+CANARD_WIDTH &&
-                        y >= canard_y[i] && y <= canard_y[i]+CANARD_HEIGHT) {
+                    if (x >= canard_x[i] && x <= canard_x[i]+CANARD_LARGEUR &&
+                        y >= canard_y[i] && y <= canard_y[i]+CANARD_HAUTEUR) {
                         score++;
-                        canard_x[i] = rand() % (800 - CANARD_WIDTH);
-                        canard_y[i] = rand() % (LIGNE_EAU - CANARD_HEIGHT);
+                        canard_x[i] = rand() % (800 - CANARD_LARGEUR);
+                        canard_y[i] = rand() % (LIGNE_EAU - CANARD_HAUTEUR);
                         break;
                     }
                 }
