@@ -19,7 +19,6 @@
 
 int initialisation(){
 
-
     {
         assert(al_init());
         assert(al_init_primitives_addon()); //initialisation formes
@@ -48,6 +47,20 @@ void afficherCanards(Canards canards[]) {
     }
 }
 
+void gagnant(Joueur1 joueur1, Joueur2 joueur2){
+    if (joueur1.nbCanards > joueur2.nbCanards) {
+        printf("Joueur 1 vous êtes le gagnant !");
+        int ticket = 0;
+        joueur1.ticket = ticket++;
+    }else if(joueur2.nbCanards > joueur1.nbCanards) {
+        printf("Joueur 2 vous êtes le gagnat !");
+        int ticket = 0;
+        joueur2.ticket = ticket++;
+    }
+
+
+
+
 void erreur(const char *txt) {
     printf("ERREUR : %s", txt);
     exit(EXIT_FAILURE);
@@ -63,10 +76,13 @@ int pecheCanards() {
     ALLEGRO_COLOR bleu;
     ALLEGRO_COLOR vert;
     ALLEGRO_BITMAP *canard_bitmap = NULL;
+    ALLEGRO_TIMER *timer = NULL;
+    ALLEGRO_FONT *fontBangers60 = NULL;
+    ALLEGRO_FONT *fontBangers160 = NULL;
     int score = 0;
 
     //création display=>allocation
-    display = al_create_display(800,600);
+    display = al_create_display(3000,1800);
     //céation file
     queue = al_create_event_queue();
     //ajouter les sources
@@ -89,6 +105,23 @@ int pecheCanards() {
         canard_y[i] = rand() % (LIGNE_EAU - CANARD_HAUTEUR);
     }
 
+    timer = al_create_timer(1.0 / 60);
+    if (!timer) {
+        al_destroy_display(display);
+        al_destroy_font(fontBangers60);
+        al_destroy_font(fontBangers160);
+        erreur("Création du timer");
+    }
+
+    queue = al_create_event_queue();
+    if (!queue) {
+        al_destroy_display(display);
+        al_destroy_font(fontBangers60);
+        al_destroy_font(fontBangers160);
+        al_destroy_timer(timer);
+        erreur("Création de l'event queue");
+    }
+    al_start_timer(timer);
     //boucle principale
     bool fini;
     while(!fini) {
@@ -117,7 +150,6 @@ int pecheCanards() {
                 }
             }
         }
-//charger la police
 
         ALLEGRO_FONT *fontBangers60 = al_load_ttf_font("../fonts/bangers/bangers-Regular.ttf", 60, 0);
         ALLEGRO_FONT *fontBangers160 = al_load_ttf_font("../fonts/bangers/bangers-Regular.ttf", 160, 0);
@@ -130,11 +162,11 @@ int pecheCanards() {
         al_clear_to_color(bleu);
         al_draw_filled_rectangle(0, LIGNE_EAU, 800, 600, vert); //ligne d'eau
         void afficherCanards(); //affichage canards
-        al_draw_textf(NULL, noir, 10, 10, 0, "Score : %d", score); //affichage score
+        al_draw_textf(NULL, noir, 10, 10, 0, "Score : %d", score);//affichage score
+        void gagnant;
         al_flip_display();
     }
-//détruire la police
-
+    
     //libérations
     al_destroy_bitmap(canard_bitmap);
     ALLEGRO_FONT *fontBangers160 = NULL;
