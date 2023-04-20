@@ -14,4 +14,6 @@ typedef struct {
     int actif;
 } Canards;
 
+void afficherCanards()
+
 #endif //PROJET_PECHEAUXCANARDS_H

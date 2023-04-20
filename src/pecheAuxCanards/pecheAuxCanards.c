@@ -30,6 +30,24 @@ int initialisation(){
         return fini ;
     }
 }
+//initialisation canards
+void initCanards(Canards canards[]) {
+    int i = 0;
+    for (i = 0; i < NB_CANARDS; i++) {
+        canards[i].actif = 0;
+        canards[i].width = 10 + rand() % 20;
+        canards[i].height = canards[i].width * 2 / 3;
+    }
+}
+//affichage
+void afficherCanards(Canards canards[]) {
+    int i = 0;
+    for (i = 0; i < NB_CANARDS; i++) {
+        al_draw_filled_ellipse(canards[i].x, canards[i].y, canards[i].width, canards[i].height,
+                               al_map_rgb(255, 100 + rand() % 156, 100 + rand() % 156));
+    }
+}
+
 void erreur(const char *txt) {
     printf("ERREUR : %s", txt);
     exit(EXIT_FAILURE);
@@ -63,16 +81,6 @@ int pecheCanards() {
     noir = al_map_rgb(0,0,0);
     bleu = al_map_rgb(0,0,200);
     vert = al_map_rgb(0,255,0);
-
-//initialisation canards
-    void initCanards(Canards canards[]) {
-        int i = 0;
-        for (i = 0; i < NB_CANARDS; i++) {
-            canards[i].actif = 0;
-            canards[i].width = 10 + rand() % 20;
-            canards[i].height = ennemis[i].width * 2 / 3;
-        }
-    }
 
     //position des canards
     int canard_x[NB_CANARDS], canard_y[NB_CANARDS];
@@ -117,18 +125,11 @@ int pecheCanards() {
             al_destroy_display(display);
             erreur("Chargement de la police bangers");
         }
-        //affichage
-        void afficheCanards(Canards canards[]) {
-            int i = 0;
-            for (i = 0; i < NB_CANARDS; i++) {
-                al_draw_filled_ellipse(canards[i].x, canards[i].y, canards[i].width, canards[i].height,
-                                       al_map_rgb(255, 100 + rand() % 156, 100 + rand() % 156));
-            }
-        }
+
     }
         al_clear_to_color(bleu);
         al_draw_filled_rectangle(0, LIGNE_EAU, 800, 600, vert); //ligne d'eau
-       void afficherCanards();
+        void afficherCanards(); //affichage canards
         al_draw_textf(NULL, noir, 10, 10, 0, "Score : %d", score); //affichage score
         al_flip_display();
     }
