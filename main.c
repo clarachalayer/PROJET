@@ -22,9 +22,22 @@ int main(void) {
     if (!al_init_image_addon()) {
         erreur("Initialisation images");
     }
+    /*image et texte pas dans la boucle
+    file
+    display
+    IMG.carte
+    while(1)
+        wait
+        switch event.type
+            case KEYDOWN:
+                switch keycode
+                    case A:
+                        tirBallons(file,&stats)
+    }
 
 
 
+*/
 
     return 0;
 }
