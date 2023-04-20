@@ -1,7 +1,7 @@
 ---
 marp: true
 theme: labyrinthe
-title: Projet d'informatique - Le Labyrinthe - Algorithmique et Langage C
+title: Projet d'informatique - ECE WORLD - Algorithmique et Langage C
 paginate: true
 _paginate: false
 ---
