@@ -14,6 +14,18 @@ typedef struct {
     int actif;
 } Canards;
 
+typedef struct {
+    int ticket;
+    int nbCanards;
+    int score
+}Joueur1;
+
+typedef struct {
+    int ticket;
+    int nbCanards;
+    int score;
+}Joueur2;
+
 void afficherCanards()
 
 #endif //PROJET_PECHEAUXCANARDS_H
