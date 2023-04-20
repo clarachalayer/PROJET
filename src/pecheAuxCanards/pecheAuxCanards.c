@@ -9,6 +9,8 @@
 #include <allegro5/allegro_font.h>
 #include <allegro5/allegro_primitives.h>
 #include <allegro5/allegro_image.h>
+#include <allegro5/allegro_font.h>
+#include <allegro5/allegro_ttf.h>
 
 #define CANARD_LARGEUR 80
 #define CANARD_HAUTEUR 60
@@ -27,6 +29,10 @@ int initialisation(){
 
         return fini ;
     }
+}
+void erreur(const char *txt) {
+    printf("ERREUR : %s", txt);
+    exit(EXIT_FAILURE);
 }
 int pecheCanards() {
     initialisation();
@@ -93,7 +99,14 @@ int pecheCanards() {
                 }
             }
         }
-//charcger la police
+//charger la police
+
+        ALLEGRO_FONT *fontBangers60 = al_load_ttf_font("../fonts/bangers/bangers-Regular.ttf", 60, 0);
+        ALLEGRO_FONT *fontBangers160 = al_load_ttf_font("../fonts/bangers/bangers-Regular.ttf", 160, 0);
+        if (!fontBangers60 || !fontBangers160) {
+            al_destroy_display(display);
+            erreur("Chargement de la police bangers");
+        }
         //affichage
         al_clear_to_color(bleu);
         al_draw_filled_rectangle(0, LIGNE_EAU, 800, 600, vert); //ligne d'eau
@@ -104,8 +117,11 @@ int pecheCanards() {
         al_flip_display();
     }
 //détruire la police
+
     //libérations
     al_destroy_bitmap(canard_bitmap);
+    ALLEGRO_FONT *fontBangers160 = NULL;
+    al_destroy_font(fontBangers160);
     al_destroy_event_queue(queue);
     al_destroy_display(display);
     return 0;
