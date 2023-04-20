@@ -3,8 +3,15 @@
 //
 
 #include "tirAuxBallons.h"
+void initialisation() {
 
+    al_init(); // Initialisation d'Allegro
+    assert(al_init_primitives_addon());
+    assert(al_init_image_addon());
+    assert(al_install_keyboard());
+    assert(al_install_mouse());
 
+}
 void init_ballons(Ballon ballons[]) {
     int i = 0;
     for (i = 0; i < NB_DE_BALLONS; i++) {

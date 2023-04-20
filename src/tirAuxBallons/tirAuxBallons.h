@@ -10,10 +10,10 @@
 #include <allegro5/allegro_primitives.h>
 #include <allegro5/allegro_image.h>
 #define NB_DE_BALLONS 10
-#define CAGE_WIDTH 200
-#define CAGE_HEIGHT 100
-#define BALLON_HAUTEUR 30
-#define BALLON_LARGEUR 20
+#define CAGE_WIDTH 700
+#define CAGE_HEIGHT 600
+#define BALLON_DIAMETRE 90
+#include "../constants.h"
 
 
 typedef struct {
@@ -28,5 +28,4 @@ void init_ballons(Ballon ballons[]);
 void affiche_ballons(Ballon ballons[]);
 void avance_ballons(Ballon ballons[]);
 void apparition_etoiles(Ballon ballons[])
-void collision_ballon(Ballon ballons[]);
 #endif //PROJET_TIRAUXBALLONS_H
