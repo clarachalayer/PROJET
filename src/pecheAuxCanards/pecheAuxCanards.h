@@ -17,7 +17,7 @@ typedef struct {
 typedef struct {
     int ticket;
     int nbCanards;
-    int score
+    int score;
 }Joueur1;
 
 typedef struct {

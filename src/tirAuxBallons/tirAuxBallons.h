@@ -15,6 +15,17 @@
 #define BALLON_DIAMETRE 90
 #include "../constants.h"
 
+typedef struct {
+    int ticket;
+    int nbCanards;
+    int tmp;
+}Joueur1;
+
+typedef struct {
+    int ticket;
+    int nbCanards;
+    int tmp;
+}Joueur2;
 
 typedef struct {
     int x, y;

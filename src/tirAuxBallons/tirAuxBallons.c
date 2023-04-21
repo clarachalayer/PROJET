@@ -69,7 +69,21 @@ void tirBallons(queue, stats){
     al_destroy_display(display);
 }*/
 
-int main(){
+
+int gagnant(Joueur1 joueur1, Joueur2 joueur2){
+    if (joueur1.tmp < joueur2.tmp) {
+        printf("Joueur 1 vous êtes le gagnant !");
+        int ticket = 0;
+        joueur1.ticket = ticket++;
+    }else if(joueur2.tmp > joueur1.tmp) {
+        printf("Joueur 2 vous êtes le gagnat !");
+        int ticket = 0;
+        joueur2.ticket = ticket++;
+    }
+
+
+
+    int main(){
 
 
 
