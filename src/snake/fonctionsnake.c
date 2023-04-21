@@ -31,9 +31,10 @@ void afficherAreneFond(ALLEGRO_DISPLAY *display) {
     int w = 106;
     int h = 106;
 
+
     al_set_window_title(display, "Gear 4");
-    ALLEGRO_BITMAP *arene = al_load_bitmap("../snake/imagesnake/arene.jpeg");
-    ALLEGRO_BITMAP *fond = al_load_bitmap("../snake/imagesnake/fonds.jpeg");
+    ALLEGRO_BITMAP *arene = al_load_bitmap("../src/snake/imagesnake/arene.jpeg");
+    ALLEGRO_BITMAP *fond = al_load_bitmap("../src/snake/imagesnake/fonds.jpeg");
 
     assert(arene);
     al_set_display_icon(display, fond);
@@ -54,7 +55,7 @@ void afficherAreneFond(ALLEGRO_DISPLAY *display) {
 
             al_set_clipping_rectangle(x, y, w, h);
 
-            al_draw_filled_rectangle(x, y, x + w, y + h, al_map_rgb(255, 0, 0));
+            //al_draw_filled_rectangle(x, y, x + w, y + h, al_map_rgb(255, 0, 0));
             x=x+106;
         }
         x=1076;
@@ -67,7 +68,6 @@ void afficherAreneFond(ALLEGRO_DISPLAY *display) {
 
     al_destroy_bitmap(arene);
     al_destroy_bitmap(fond);
-
 
 
 }
@@ -97,7 +97,6 @@ void initialisationTerrain(ALLEGRO_DISPLAY *display){
     // Attente d'une touche pour quitter
     al_rest(2.0);
     al_destroy_display(display);
-
 
 
 }

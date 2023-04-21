@@ -13,7 +13,7 @@
 #define CAGE_WIDTH 700
 #define CAGE_HEIGHT 600
 #define BALLON_DIAMETRE 90
-#include "../constants.h"
+#include "../constant.h"
 
 typedef struct {
     int ticket;

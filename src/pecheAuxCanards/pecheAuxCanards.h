@@ -26,6 +26,6 @@ typedef struct {
     int score;
 }Joueur2;
 
-void afficherCanards()
+void afficherCanards();
 
 #endif //PROJET_PECHEAUXCANARDS_H
