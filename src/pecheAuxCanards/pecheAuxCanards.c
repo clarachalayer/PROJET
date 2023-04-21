@@ -71,29 +71,27 @@ int pecheCanards() {
     initialisation();
 
     //déclarations
-    ALLEGRO_DISPLAY *display = NULL;
-    ALLEGRO_EVENT_QUEUE *queue = NULL;
     ALLEGRO_EVENT event = {};
     ALLEGRO_COLOR noir;
     ALLEGRO_COLOR bleu;
     ALLEGRO_COLOR vert;
-    ALLEGRO_BITMAP *canard_bitmap = NULL;
     ALLEGRO_TIMER *timer = NULL;
     ALLEGRO_FONT *fontBangers60 = NULL;
-    ALLEGRO_FONT *fontBangers160 = NULL;
     int score = 0;
 
     //création display=>allocation
-    display = al_create_display(3000, 1800);
+    al_create_display(3000, 1800);
     //céation file
-    queue = al_create_event_queue();
+    al_create_event_queue();
     //ajouter les sources
+    ALLEGRO_DISPLAY *display = NULL;
+    ALLEGRO_EVENT_QUEUE *queue = NULL;
     al_register_event_source(queue, al_get_display_event_source(display));
     //clavier
     al_register_event_source(queue, al_get_keyboard_event_source());
 
     //chargement image canard
-    canard_bitmap = al_load_bitmap("canard.png");
+    al_load_bitmap("canard.jpeg");
     assert(canard_bitmap);
 
     noir = al_map_rgb(0, 0, 0);
@@ -108,6 +106,7 @@ int pecheCanards() {
     }
 
     timer = al_create_timer(1.0 / 60);
+    ALLEGRO_FONT *fontBangers160;
     if (!timer) {
         al_destroy_display(display);
         al_destroy_font(fontBangers60);
@@ -115,7 +114,7 @@ int pecheCanards() {
         erreur("Création du timer");
     }
 
-    queue = al_create_event_queue();
+    al_create_event_queue();
     if (!queue) {
         al_destroy_display(display);
         al_destroy_font(fontBangers60);
@@ -165,7 +164,7 @@ int pecheCanards() {
     al_draw_filled_rectangle(0, LIGNE_EAU, 800, 600, vert); //ligne d'eau
     void afficherCanards(); //affichage canards
     al_draw_textf(NULL, noir, 10, 10, 0, "Score : %d", score);//affichage score
-    void gagnant;
+    void *gagnant;
     al_flip_display();
 
 
