@@ -15,23 +15,12 @@
 #define BALLON_DIAMETRE 90
 #include "../constant.h"
 
-typedef struct {
-    int ticket;
-    int nbCanards;
-    int tmp;
-}Joueur1;
-
-typedef struct {
-    int ticket;
-    int nbCanards;
-    int tmp;
-}Joueur2;
 
 typedef struct {
     int x, y;
+    int d;
     int vitesse;
     int actif;
-    int width, height;
     ALLEGRO_BITMAP *image;
 } Ballon;
 
