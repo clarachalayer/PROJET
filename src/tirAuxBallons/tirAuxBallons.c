@@ -40,21 +40,41 @@ void avance_ballons(Ballon ballons[]) {
 }
 
 void tirBallons(event, stats){
-    init_ballons();
-    affiche_ballons();
-    avance_ballons();
+    init_ballons(Ballon ballons[]);
+    affiche_ballons(Ballon ballons[]);
+    avance_ballons(Ballon ballons[]);
 
     Img.ballons
 
     while(1){
-        ALLEGRO_TIMER *timer=NULL;
+        //déclaration
+        bool fini = false;
+        ALLEGRO_DISPLAY*fenetre = NULL;
+        ALLEGRO_EVENT_QUEUE* fifo = NULL;
         ALLEGRO_EVENT event;
-
+        ALLEGRO_TIMER *timer=NULL;
+        //créeation file
+        fifo = al_create_event_queue();
+        //
         al_wait_for_event(fifo, &event);
         timer= al_create_timer(1);
         al_start_timer(timer);
         printf("Le temps du joueur 1 à demarrer %d.\n");
-        switch
+        // Création des éléments
+        fenetre = al_create_display(WIDTH, HEIGHT);
+        assert(fenetre != NULL);
+        al_set_window_title(fenetre, "Jeu tir aux ballons");
+        al_register_event_source(fifo, al_get_display_event_source(fenetre));
+        al_register_event_source(fifo, al_get_mouse_event_source());
+        al_register_event_source(fifo, al_get_timer_event_source(timer));
+        //first display
+        al_flip_display();
+
+
+
+
+
+
     }
     al_destroy_display(display);
 }
