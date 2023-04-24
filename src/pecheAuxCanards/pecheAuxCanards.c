@@ -1,3 +1,4 @@
+
 //
 // Created by mathilde curtil on 18/04/2023.
 //
@@ -49,18 +50,23 @@ void afficherCanards(Canards canards[]) {
     }
 }
 
-int gagnant(Joueur1 joueur1, Joueur2 joueur2) {
-    if (joueur1.nbCanards > joueur2.nbCanards) {
+int gagnant(Joueur j1, Joueur j2) {
+    if (j1.nbCanards > j2.nbCanards) {
         printf("Joueur 1 vous êtes le gagnant !");
         int ticket = 0;
-        joueur1.ticket = ticket++;
-    } else if (joueur2.nbCanards > joueur1.nbCanards) {
+        j1.ticket = ticket+1;
+    } else if (j2.nbCanards > j1.nbCanards) {
         printf("Joueur 2 vous êtes le gagnat !");
         int ticket = 0;
-        joueur2.ticket = ticket++;
+        j2.ticket = ticket+1;
     }
 }
 
+int inijoueur(Joueur j, Joueur j1, Joueur j2) {
+    Joueur j1 = 0;
+    Joueur j2 = 0;
+    Joueur j = j1;
+}
 
 void erreur(const char *txt) {
     printf("ERREUR : %s", txt);
@@ -68,7 +74,7 @@ void erreur(const char *txt) {
 }
 
 int pecheCanards() {
-    initialisation();
+
 
     //déclarations
     ALLEGRO_EVENT event = {};
@@ -92,18 +98,14 @@ int pecheCanards() {
 
     //chargement image canard
     al_load_bitmap("canard.jpeg");
+    bool canard_bitmap;
     assert(canard_bitmap);
+
 
     noir = al_map_rgb(0, 0, 0);
     bleu = al_map_rgb(0, 0, 200);
     vert = al_map_rgb(0, 255, 0);
 
-    //position des canards
-    int canard_x[NB_CANARDS], canard_y[NB_CANARDS];
-    for (int i = 0; i < NB_CANARDS; i++) {
-        canard_x[i] = rand() % (800 - CANARD_LARGEUR);
-        canard_y[i] = rand() % (LIGNE_EAU - CANARD_HAUTEUR);
-    }
 
     timer = al_create_timer(1.0 / 60);
     ALLEGRO_FONT *fontBangers160;
@@ -122,34 +124,73 @@ int pecheCanards() {
         al_destroy_timer(timer);
         erreur("Création de l'event queue");
     }
-    al_start_timer(timer);
+
     //boucle principale
-    bool fini;
-    while (!fini) {
-        //gestion des événements
-        if (al_get_next_event(queue, &event)) {
-            if (event.type == ALLEGRO_EVENT_DISPLAY_CLOSE) {
-                fini = 1;
-            }
-            if (event.type == ALLEGRO_EVENT_KEY_DOWN) {
-                if (event.keyboard.keycode == ALLEGRO_KEY_ESCAPE) {
+    //initialisations du jeu
+    inijoueur();
+    initCanards();
+    //position des canards
+    int canard_x[NB_CANARDS], canard_y[NB_CANARDS];
+    for (int i = 0; i < NB_CANARDS; i++) {
+        canard_x[i] = rand() % (800 - CANARD_LARGEUR);
+        canard_y[i] = rand() % (LIGNE_EAU - CANARD_HAUTEUR);
+    }
+    al_start_timer(timer);
+    //déroulement de la partie
+    if(j==j1){
+        bool fini;
+        while (!fini) {
+            //gestion des événements
+            if (al_get_next_event(queue, &event)) {
+                if (event.type == ALLEGRO_EVENT_DISPLAY_CLOSE) {
                     fini = 1;
                 }
-            }
-            if (event.type == ALLEGRO_EVENT_MOUSE_BUTTON_DOWN) {
-                int x = event.mouse.x;
-                int y = event.mouse.y;
-                //vérification si on a cliqué sur un canard
-                for (int i = 0; i < NB_CANARDS; i++) {
-                    if (x >= canard_x[i] && x <= canard_x[i] + CANARD_LARGEUR &&
-                        y >= canard_y[i] && y <= canard_y[i] + CANARD_HAUTEUR) {
-                        score++;
-                        canard_x[i] = rand() % (800 - CANARD_LARGEUR);
-                        canard_y[i] = rand() % (LIGNE_EAU - CANARD_HAUTEUR);
-                        break;
+                if (event.type == ALLEGRO_EVENT_MOUSE_BUTTON_DOWN) {
+                    int x = event.mouse.x;
+                    int y = event.mouse.y;
+                    //vérification si on a cliqué sur un canard
+                    for (int i = 0; i < NB_CANARDS; i++) {
+                        if (x >= canard_x[i] && x <= canard_x[i] + CANARD_LARGEUR &&
+                            y >= canard_y[i] && y <= canard_y[i] + CANARD_HAUTEUR) {
+                            score.j1++;
+                            canard_x[i] = rand() % (800 - CANARD_LARGEUR);
+                            canard_y[i] = rand() % (LIGNE_EAU - CANARD_HAUTEUR);
+                            break;
+                        }
                     }
                 }
             }
+        }
+        timer = 0;
+        if(j==j1){
+            j = j2;
+            bool fini;
+            while (!fini) {
+                //gestion des événements
+                if (al_get_next_event(queue, &event)) {
+                    if (event.type == ALLEGRO_EVENT_DISPLAY_CLOSE) {
+                        fini = 1;
+                    }
+                    if (event.type == ALLEGRO_EVENT_MOUSE_BUTTON_DOWN) {
+                        int x = event.mouse.x;
+                        int y = event.mouse.y;
+                        //vérification si on a cliqué sur un canard
+                        for (int i = 0; i < NB_CANARDS; i++) {
+                            if (x >= canard_x[i] && x <= canard_x[i] + CANARD_LARGEUR &&
+                                y >= canard_y[i] && y <= canard_y[i] + CANARD_HAUTEUR) {
+                                score.j2++;
+                                canard_x[i] = rand() % (800 - CANARD_LARGEUR);
+                                canard_y[i] = rand() % (LIGNE_EAU - CANARD_HAUTEUR);
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+            timer = 0;
+        }
+        if(j==j2){
+            int gagnant();
         }
 
         ALLEGRO_FONT *fontBangers60 = al_load_ttf_font("../fonts/bangers/bangers-Regular.ttf", 60, 0);
@@ -179,3 +220,4 @@ int pecheCanards() {
     al_destroy_display(display);
     return 0;
 }
+

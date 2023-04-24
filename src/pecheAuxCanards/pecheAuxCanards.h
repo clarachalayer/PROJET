@@ -18,13 +18,8 @@ typedef struct {
     int ticket;
     int nbCanards;
     int score;
-}Joueur1;
+}Joueur;
 
-typedef struct {
-    int ticket;
-    int nbCanards;
-    int score;
-}Joueur2;
 
 void afficherCanards();
 
