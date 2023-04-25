@@ -39,6 +39,23 @@ Notre jeu est sur le thème des 4 éléments, nous avons donc fais chacun un jeu
 - Snake : terre 🌍
 
 ---
+# 🦆Comment fonctionne le jeu de la pêche aux canards:
+
+-Les canards sont représentés par...
+
+---
+# 🎈Comment fonctionne le jeu du tir à la carabine:
+-Les ballons sont des structures qui bougent
+
+---
+# 🎸Comment fonctionne la guitare héro:
+-
+---
+# 🐍Comment fonctionne le snake:
+-
+---
+
+
 
 # 👨‍💻Comment en sommes nous arrivé à ce résultat ?
 
@@ -65,7 +82,7 @@ Notre jeu est sur le thème des 4 éléments, nous avons donc fais chacun un jeu
 - Lors de la fin de la partie, on compare les tickets et déclare le grand gagnant
 
 ---
-# 🕺Bilan du Projet
+# 🕺Bilan du Projet et du groupe
 
 - Ce qui peut être amélioré dans le code
 - Ce qui peut être amélioré dans le groupe
