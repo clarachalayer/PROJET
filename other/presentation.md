@@ -13,6 +13,7 @@ _class: lead
 
 ![bg left](./images/fond_ece.png)
 
+
 Projet d'informatique
 Algorithmique et langage C
 
