@@ -57,7 +57,7 @@ Notre jeu est sur le thème des 4 éléments, nous avons donc fais chacun un jeu
 
 
 
-# 👨‍💻Comment en sommes nous arrivé à ce résultat ?
+# 👨‍💻Comment en sommes nous arrivés à ce résultat ?
 
 - Une conception réalisée en équipe
 - Une structuration des données dès le début 
