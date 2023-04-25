@@ -126,7 +126,7 @@ int pecheCanards() {
     }
 
     //boucle principale
-    //initialisations du jeu
+    //initialisations du je
     inijoueur();
     initCanards();
     //position des canards
