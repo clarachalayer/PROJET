@@ -1,6 +1,6 @@
 ---
 marp: true
-theme: labyrinthe
+theme: ECE-world
 title: Projet d'informatique - ECE WORLD - Algorithmique et Langage C
 paginate: true
 _paginate: false
@@ -18,7 +18,7 @@ Algorithmique et langage C
 
 <br><br><br>
 
-# Labyrinthe<br>🧭🗺
+# ECE-WORLD<br> 🎪🦆🎈🎸🐍
 
 <br><br><br>
 
@@ -26,36 +26,45 @@ Algorithmique et langage C
 
 ---
 
-# Titre
+# 👨‍💻Rapide Contexte du jeu
 
-Lorem ipsum dolor sit amet [ece](https://www.ece.fr), consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+Notre jeu est sur le thème des 4 éléments, nous avons donc fais chacun un jeu sur le thème de chaque éléments. 
 
-## Titre 2
+## 👩‍💻thème de nos jeux : 
 
-- Liste 1
-- Liste 2
-- Liste 3
-
----
-
-# Titre
-
-Lorem ipsum dolor **sit amet**, consectetur *adipiscing* elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-
-## Titre 2
-
-1. Liste 1
-1. Liste 2
-1. Liste 3
+- Pêche aux canards : eau 💧
+- Tir au ballon : air 🌬️
+- Guitare héro : feu 🔥
+- Snake : terre 🌍
 
 ---
 
-# Titre
+# 👨‍💻Comment en sommes nous arrivé à ce résultat ?
 
-```C
-for(int i = 0; i < 5; i++) {
-    printf("%d ", i);
-}
-```
+- Une conception réalisée en équipe
+- Une structuration des données dès le début 
+- Une répartition des tâches
 
-> 0 1 2 3 4 
+---
+# 👩‍💻Comment avons-nous travaillé ?
+
+- Une première réunion pour faire la conception et se répartir les taches
+- Nous avons codé chacun de notre côté la plupart du temps
+- En cours nous nous sommes entraidés et nous nous sommes motivé
+
+
+---
+# 👨‍💻Comment se déroule une partie ?
+
+- Affichage de la carte
+- Déplacement des joueurs sur la carte et choix de jeu
+- Déroulement du jeu choisi
+- Distribution du ticket au gagnant
+- Retour à la carte
+- Lors de la fin de la partie, on compare les tickets et déclare le grand gagnant
+
+---
+# 🕺Bilan du Projet
+
+- Ce qui peut être amélioré dans le code
+- Ce qui peut être amélioré dans le groupe
