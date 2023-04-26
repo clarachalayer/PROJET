@@ -5,26 +5,22 @@
 #include "tirAuxBallons.h"
 
 
-void init_ballons(Ballon ballons[]) {
+void init_Ballons(Ballon Ballons[]){
     int i = 0;
-    for (i = 0; i < NB_DE_BALLONS; i++) {
-        ballons[i].vitesse = 1;
-        ballons[i].actif = 1;
-        ballons[i].x = CAGE_WIDTH + rand() % (CAGE_WIDTH - (ballons[i].width * 2));
-        ballons[i].y = CAGE_HEIGHT + rand() % (CAGE_HEIGHT - (ballons[i].height * 2));
-        ballons[i].d = BALLON_DIAMETRE;
-
+    for (i = 0; i < NB_MAX_BALLONS; i++) {
+        Ballons[i].x = 380+80+rand()%(1580-380);
+        Ballons[i].actif = 0;
+        Ballons[i].y = 250+80+rand()%(900-250);
     }
 }
+void affiche_Ballons(Ballon Ballons[]){
+    int i=0;
+    for(i=0; i < NB_MAX_BALLONS;i++){
 
-void affiche_ballons(Ballon ballons[]){
-    int i = 0;
-        for (i = 0; i < NB_DE_BALLONS; i++) {
-            if (ballons[i].actif) {
-                al_draw_filled_circle(180,180,BALLON_DIAMETRE,
-                                       al_map_rgb(200 + rand() % 56, 200 + rand() % 56, 200 + rand() % 56));
-            }
-        }
+        al_draw_filled_circle(440+rand()%(1580-480), 310+rand()%(900-360), 60,COULEUR_ALEA);
+
+
+    }
 }
 void avance_ballons(Ballon ballons[]) {
     int i = 0;
@@ -57,6 +53,7 @@ void tirBallons(event, stats){
         fifo = al_create_event_queue();
         //
         al_wait_for_event(fifo, &event);
+        //debut du temps
         timer= al_create_timer(1);
         al_start_timer(timer);
         printf("Le temps du joueur 1 à demarrer %d.\n");

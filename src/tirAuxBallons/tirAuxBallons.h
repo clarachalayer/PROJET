@@ -9,19 +9,19 @@
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_primitives.h>
 #include <allegro5/allegro_image.h>
-#define NB_DE_BALLONS 10
-#define CAGE_WIDTH 700
-#define CAGE_HEIGHT 600
-#define BALLON_DIAMETRE 90
 #include "../constant.h"
+#define NB_MAX_BALLONS 10
+#define SCREEN_WIDTH 1920
+#define SCREEN_HEIGHT 1080
+
 
 
 typedef struct {
-    int x, y;
-    int d;
-    int vitesse;
+    float x;
+    float y;
+    float rayon;
     int actif;
-    ALLEGRO_BITMAP *image;
+    ALLEGRO_COLOR couleur;
 } Ballon;
 
 void init_ballons(Ballon ballons[]);
