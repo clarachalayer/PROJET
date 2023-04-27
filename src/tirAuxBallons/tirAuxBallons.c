@@ -32,7 +32,7 @@ void afficher_temps(ALLEGRO_FONT *fontBangers60,ALLEGRO_TIMER *timer){
     int temps_ecoule= al_get_timer_count(timer);
     int secondes = (int) temps_ecoule/60;
     int millisecondes = (int) (temps_ecoule-secondes)/0.06;
-    al_draw_textf(fontBangers60, al_map_rgb(255,175,44),SCREEN_WIDTH-350,10,0,"Temps: %02d:%02d", secondes,millisecondes%1000);
+    al_draw_textf(fontBangers60, al_map_rgb(255,0,0),SCREEN_WIDTH-350,10,0,"Temps: %02d:%02d", secondes,millisecondes%1000);
 }
 
 void init_Ballons(Ballon Ballons[]){
@@ -167,6 +167,7 @@ void tirBallons(event, stats){
 
 
                 al_draw_filled_rectangle(380,250,1580,900, NOIR);
+                al_draw_filled_rectangle(SCREEN_WIDTH-350,10,SCREEN_WIDTH-30,80, NOIR);
 
                 mouvement_Ballons(Ballons);
                 collision_Ballons(Ballons);
