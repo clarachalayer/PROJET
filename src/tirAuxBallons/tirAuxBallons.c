@@ -3,16 +3,36 @@
 //
 
 #include "tirAuxBallons.h"
+#include <allegro5/allegro.h>
+#include <allegro5/allegro_primitives.h>
+#include <allegro5/allegro_font.h>
+#include <allegro5/events.h>
+#include <allegro5/bitmap.h>
+#include <allegro5/allegro_image.h>
+#include <allegro5/allegro_color.h>
 #include <allegro5/allegro_font.h>
 #include <allegro5/allegro_ttf.h>
-#define RAYON 60
+#include <stdio.h>
 
+#define SCREEN_WIDTH 1920
+#define SCREEN_HEIGHT 1080
+#define NOIR al_map_rgb(0,0,0)
+#define NB_MAX_BALLONS 10
 #define COULEUR_ALEA al_map_rgb(rand()%256, rand()%256, rand()%256)
+#define RAYON 40
+
 
 void erreur(const char *txt) {
     printf("ERREUR : %s", txt);
     exit(EXIT_FAILURE);
 
+}
+
+void afficher_temps(ALLEGRO_FONT *fontBangers60,ALLEGRO_TIMER *timer){
+    int temps_ecoule= al_get_timer_count(timer);
+    int secondes = (int) temps_ecoule/60;
+    int millisecondes = (int) (temps_ecoule-secondes)/0.06;
+    al_draw_textf(fontBangers60, al_map_rgb(255,175,44),SCREEN_WIDTH-350,10,0,"Temps: %02d:%02d", secondes,millisecondes%1000);
 }
 
 void init_Ballons(Ballon Ballons[]){
@@ -39,20 +59,21 @@ void affiche_Ballons(Ballon Ballons[]){
     }
 }
 
-bool collision_Ballons(Ballon Ballons[]){
+void collision_Ballons(Ballon Ballons[]){
     int i=0,j=0;
     for(i = 0; i < NB_MAX_BALLONS; i++){
         if(Ballons[i].actif==1){
             for(j = i+1; j < NB_MAX_BALLONS; j++){ // commence à j=i+1 pour éviter de comparer deux fois le même couple de ballons
                 if(Ballons[j].actif==1){ // ajoute une vérification pour voir si le ballon j est actif
                     int d1 = (Ballons[i].x - Ballons[j].x)*(Ballons[i].x - Ballons[j].x) + (Ballons[i].y - Ballons[j].y)*(Ballons[i].y - Ballons[j].y);
-                    if(d1 <= (RAYON*2)* (RAYON*2) )
-                        return true; // si la distance entre les deux ballons est inférieure ou égale au diamètre des ballons, il y a collision
+                    if(d1 <= (RAYON*2)* (RAYON*2) ){
+                        Ballons[i].haut=!Ballons[i].haut;
+                        Ballons[i].droite=!Ballons[i].droite;
+                    }
                 }
             }
         }
     }
-    return false; // si aucune collision n'a été détectée, retourne false
 }
 
 
@@ -90,75 +111,89 @@ void mouvement_Ballons(Ballon Ballons[]) {
         }
     }
 }
-/*
+
+
+
 void tirBallons(event, stats){
+    srand(time(NULL));
+    al_init();
+    al_init_primitives_addon();
+    al_init_image_addon();
+    al_init_font_addon();
+    al_init_ttf_addon();
+
+
     ALLEGRO_DISPLAY * display = NULL;
-    ALLEGRO_TIMER * timer = NULL;
-    Ballon Ballons[NB_MAX_BALLONS];
-
-    if (!al_init()) {
-        erreur("Initialisation Allegro");
-    }
-    if (!al_install_keyboard()) {
-        erreur("Installation clavier");
-    }
-    if (!al_init_primitives_addon()) {
-        erreur("Initialisation primitives de dessin");
-    }
-    if (!al_init_image_addon()) {
-        erreur("Initialisation images");
-    }
-
-    display= al_create_display(SCREEN_WIDTH, SCREEN_HEIGHT);
-    ALLEGRO_BITMAP * font = al_load_bitmap("../fond.jpg");
-    al_clear_to_color(al_map_rgb(0,0,0));
-
-    al_draw_scaled_bitmap(font,0,0,900,600,0,0,SCREEN_WIDTH,SCREEN_HEIGHT,0);
-    al_draw_filled_rectangle(380,250,1580,900, al_map_rgb(0,0,0));
-
-    //initialisations des ballons
-
-
-
-
-    //déclaration
-    int pause = 0, gameOver = 0, dessin = 0, waitInMilliseconds = -1;
-    bool fini = false;
-    ALLEGRO_DISPLAY*fenetre = NULL;
-    ALLEGRO_EVENT_QUEUE* queue = NULL;
+    ALLEGRO_EVENT_QUEUE * queue = NULL;
     ALLEGRO_EVENT event;
+    ALLEGRO_BITMAP *fond = NULL;
     ALLEGRO_TIMER *timer=NULL;
-    //créeation file
-    queue = al_create_event_queue();
-    //debut du temps
-    timer= al_create_timer(1);
+    printf("test");
+    ALLEGRO_FONT *font=NULL;
+
+    font= al_load_font("../font/Bangers-Regular.ttf",60,0);
+
+    Ballon Ballons[NB_MAX_BALLONS]={0};
+
+    timer= al_create_timer(1.0/60);
     al_start_timer(timer);
-    assert(fenetre != NULL);
-    al_register_event_source(queue, al_get_display_event_source(display));
-    al_register_event_source(queue, al_get_mouse_event_source());
+
+    fond= al_load_bitmap("..\\image\\fond.jpg");
+    queue = al_create_event_queue();
+    display = al_create_display(SCREEN_WIDTH,SCREEN_HEIGHT);
+
+
+
+    al_install_keyboard();
+
+    al_register_event_source(queue,al_get_keyboard_event_source());
     al_register_event_source(queue, al_get_timer_event_source(timer));
 
-    do{
-        al_wait_for_event(queue, &event);
-        if(event.type==ALLEGRO_EVENT_MOUSE_BUTTON_UP){
-            for (int i=0;i<10,i++){
+    init_Ballons(Ballons);
+    al_draw_scaled_bitmap(fond,0,0,900,600,0,0,SCREEN_WIDTH,SCREEN_HEIGHT,0);
 
-            }
+    bool fin=0;
+    while(!fin){
+        al_wait_for_event(queue,&event);
+        switch(event.type){
+            case ALLEGRO_EVENT_KEY_DOWN:
+                switch(event.keyboard.keycode){
+                    case ALLEGRO_KEY_ESCAPE:
+                        fin=1;
+                        break;
+                }
+                break;
+            case ALLEGRO_EVENT_TIMER:
 
-        }//souris sur un ballon, si oui le desactiver
 
+                al_draw_filled_rectangle(380,250,1580,900, NOIR);
 
-        //first display
-        al_flip_display();
+                mouvement_Ballons(Ballons);
+                collision_Ballons(Ballons);
 
+                afficher_temps(font,timer);
+                affiche_Ballons(Ballons);
 
-
-
-
-
+                al_flip_display();
+                break;
+        }
     }
+
+
     al_destroy_display(display);
-}*/
+    al_destroy_font(font);
+    al_destroy_event_queue(queue);
+    al_destroy_bitmap(fond);
+    al_destroy_timer(timer);
+
+
+    return 0;
+}
+
+
+
+
+
 
 
 int gagnant(Joueur1 joueur1, Joueur2 joueur2){
