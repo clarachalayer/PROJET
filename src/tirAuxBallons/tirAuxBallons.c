@@ -56,6 +56,41 @@ bool collision_Ballons(Ballon Ballons[]){
 }
 
 
+void mouvement_Ballons(Ballon Ballons[]) {
+    int i = 0;
+    for (i = 0; i < NB_MAX_BALLONS; i++) {
+        if (Ballons[i].actif) {
+            if (Ballons[i].x - RAYON < 380) {
+                Ballons[i].droite=1;
+            }
+            else if (Ballons[i].x + RAYON >= 1580) {
+                Ballons[i].droite=0;
+            }
+            if(Ballons[i].y - RAYON < 250) {
+                Ballons[i].haut = 0;
+            }
+            else if(Ballons[i].y + RAYON >= 900) {
+                Ballons[i].haut = 1;
+            }
+
+            if(Ballons[i].haut==1){
+                Ballons[i].y -= Ballons[i].vitesseY;
+            }
+            else{
+                Ballons[i].y += Ballons[i].vitesseY;
+            }
+
+            if(Ballons[i].droite==1){
+                Ballons[i].x += Ballons[i].vitesseX;
+            }
+            else{
+                Ballons[i].x -= Ballons[i].vitesseX;
+            }
+
+        }
+    }
+}
+/*
 void tirBallons(event, stats){
     ALLEGRO_DISPLAY * display = NULL;
     ALLEGRO_TIMER * timer = NULL;
@@ -123,7 +158,7 @@ void tirBallons(event, stats){
 
     }
     al_destroy_display(display);
-}
+}*/
 
 
 int gagnant(Joueur1 joueur1, Joueur2 joueur2){
