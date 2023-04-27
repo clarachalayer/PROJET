@@ -19,10 +19,15 @@
 typedef struct {
     float x;
     float y;
+    int vitesseX;
+    int vitesseY;
     float rayon;
     int actif;
+    int haut, droite;
+    int score;
     ALLEGRO_COLOR couleur;
 } Ballon;
+
 
 void init_ballons(Ballon ballons[]);
 void affiche_ballons(Ballon ballons[]);
