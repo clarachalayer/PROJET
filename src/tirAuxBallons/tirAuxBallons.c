@@ -20,6 +20,9 @@
 #define NB_MAX_BALLONS 10
 #define COULEUR_ALEA al_map_rgb(rand()%256, rand()%256, rand()%256)
 #define RAYON 40
+#define BTN_GAUCHE_SOURIS 1
+#define BTN_DROIT_SOURIS 2
+
 
 
 void erreur(const char *txt) {
@@ -69,6 +72,8 @@ void collision_Ballons(Ballon Ballons[]){
                     if(d1 <= (RAYON*2)* (RAYON*2) ){
                         Ballons[i].haut=!Ballons[i].haut;
                         Ballons[i].droite=!Ballons[i].droite;
+                        Ballons[j].haut=!Ballons[j].haut;
+                        Ballons[j].droite=!Ballons[j].droite;
                     }
                 }
             }
@@ -114,7 +119,7 @@ void mouvement_Ballons(Ballon Ballons[]) {
 
 
 
-void tirBallons(event, stats){
+void tirBallons(, stats){
     srand(time(NULL));
     al_init();
     al_init_primitives_addon();
@@ -176,6 +181,17 @@ void tirBallons(event, stats){
                 affiche_Ballons(Ballons);
 
                 al_flip_display();
+                break;
+            case ALLEGRO_EVENT_MOUSE_BUTTON_DOWN: // on vient d'enfoncer une touche de la souris
+                if(event.mouse.button == BTN_GAUCHE_SOURIS || event.mouse.button ==BTN_DROIT_SOURIS)
+                    for(int i=0; i<NB_MAX_BALLONS;i++){
+                        if(((event.mouse.x-Ballons[i].x)*(event.mouse.x-Ballons[i].x)+(event.mouse.y-Ballons[i].y)*(event.mouse.y-Ballons[i].y))<RAYON*RAYON)
+                            Ballons[i].actif=0;
+
+                    }
+                break;
+            case ALLEGRO_EVENT_MOUSE_AXES:
+                printf("x: %d, y: %d \n ", event.mouse.x,event.mouse.y);
                 break;
         }
     }
