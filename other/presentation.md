@@ -39,6 +39,14 @@ Notre jeu est sur le thème des 4 éléments, nous avons donc fais chacun un jeu
 - Snake : terre 🌍
 
 ---
+## 👩‍💻La carte et les deux personnages :
+
+![bg left](./images/Perso.png)
+
+![bg left](./images/Perso2.png)
+
+![bg left](./images/Carte.png)
+---
 # 🦆Comment fonctionne le jeu de la pêche aux canards:
 
 -Les canards sont représentés par...
